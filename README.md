@@ -2,7 +2,7 @@
 
 Jag vill skapa en applikation som arbetsförmedlingens app platsbanken fast med personliga inställningar. Som det är nu kan man inte spara preferenser i appen och deras hemsida är väldigt rörig att använda i mobilen.
 
-Kravspecifikation
+### Kravspecifikation
 
 Primärt
 Jag ska kunna välja vilka områden jag vill söka i.
