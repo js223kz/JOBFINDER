@@ -1,0 +1,23 @@
+{
+  "name": "jobfinder_project",
+  "description": "assignment for course Webbteknik 2",
+  "main": "app.js",
+  "authors": [
+    "Johanna Szepanski"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/js223kz/JOBFINDER_PROJECT",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "font-awesome": "~4.5.0"
+  }
+}
