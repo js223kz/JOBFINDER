@@ -1,9 +1,9 @@
 "use strict";
 var JOSZEP = JOSZEP || {};
-JOSZEP.start = JOSZEP.start || {
-        load : function (){
-            
-    };
-window.onload = JOSZEP.start.load;
-
-
+JOSZEP.StartWindow = JOSZEP.StartWindow || {
+    
+    start : function (){
+    
+    }
+};
+window.onload = JOSZEP.StartWindow.start;
