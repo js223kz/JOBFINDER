@@ -1,18 +1,15 @@
 var express = require('express');
-var partials = require('express-partials');
-
-
 
 var startRouter = express.Router();
 
 
 startRouter.route('/')
     .get(function (req, res) {
-    var newUser = true;
+    var newUser = false;
     if(newUser === true){
-        res.render('index',{newUser: newUser});
+        res.render('welcomeView');
     }else{
-        //res.render('index.ejs',{layout:false});
+        res.render('settingsView');
     }
 }); 
 
