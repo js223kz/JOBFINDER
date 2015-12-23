@@ -1,4 +1,4 @@
-app.controller('LoginController', function($scope, $http){
+app.controller('LoginController', function($scope, $http, $state){
     
     //variables
     $scope.registerData = {
@@ -21,6 +21,7 @@ app.controller('LoginController', function($scope, $http){
         $http.post('backend/register.php', userInput).success(function(response){
             console.log(response);
             localStorage.setItem("username", JSON.stringify({username: response}));
+            $state.go('lists');
         }).error(function(error){
             console.log(error);
         })
@@ -35,6 +36,7 @@ app.controller('LoginController', function($scope, $http){
          $http.post('backend/login.php', userInput).success(function(response){
             console.log(response);
             localStorage.setItem("username", JSON.stringify({username: response[0]}));
+            $state.go('lists');
         }).error(function(error){
             console.log(error);
         })

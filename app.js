@@ -6,5 +6,11 @@ app.config(function($stateProvider){
         url:'/',
         controller:'LoginController',
         templateUrl:'views/login.html'
-    });
+    })
+    
+    .state('lists', {
+        url: '/lists',
+        controller: 'ListsController',
+        templateUrl: 'views/lists.html'
+    })
 })
