@@ -20,6 +20,7 @@ app.controller('LoginController', function($scope, $http){
         
         $http.post('backend/register.php', userInput).success(function(response){
             console.log(response);
+            localStorage.setItem("username", JSON.stringify({username: response}));
         }).error(function(error){
             console.log(error);
         })
@@ -30,6 +31,13 @@ app.controller('LoginController', function($scope, $http){
             username: $scope.loginData.username,
             password: $scope.loginData.password
         }
+        
+         $http.post('backend/login.php', userInput).success(function(response){
+            console.log(response);
+            localStorage.setItem("username", JSON.stringify({username: response[0]}));
+        }).error(function(error){
+            console.log(error);
+        })
     }
     
 });

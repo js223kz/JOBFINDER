@@ -8,8 +8,8 @@
     
     <div class="col-sm-6">
         <h2>Login</h2>
-        <input type="text" class="form-control" placeholder="Användarnamn">
-        <input type="password" class="form-control" placeholder="Lösenord">
-        <button>Login</button>
+        <input type="text" class="form-control" ng-model="loginData.username" placeholder="Användarnamn">
+        <input type="password" class="form-control" ng-model="loginData.password" placeholder="Lösenord">
+        <button ng-click="loginUser()">Login</button>
     </div>
 </div>
