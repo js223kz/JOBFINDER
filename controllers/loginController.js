@@ -35,7 +35,7 @@ app.controller('LoginController', function($scope, $http, $state){
         
          $http.post('backend/login.php', userInput).success(function(response){
             console.log(response);
-            localStorage.setItem("username", JSON.stringify({username: response[0]}));
+            localStorage.setItem("token", JSON.stringify(response));
             $state.go('lists');
         }).error(function(error){
             console.log(error);

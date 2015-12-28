@@ -13,4 +13,5 @@ app.config(function($stateProvider){
         controller: 'ListsController',
         templateUrl: 'views/lists.html'
     })
+    
 })

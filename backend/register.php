@@ -1,7 +1,7 @@
 <?php
 
-     include('databaseconnection.php');
-     //takes a json encoded string and converts it into php variables
+    include('databaseconnection.php');
+    //takes a json encoded string and converts it into php variables
     $userInput = json_decode(file_get_contents('Php://input'));
     
     $username = $userInput->username;
