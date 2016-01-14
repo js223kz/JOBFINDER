@@ -1,17 +1,20 @@
-var app = angular.module("JobFinderApp", ["ui.router"])
+var app = angular.module("JobFinderApp", ["ui.router", "ngGeolocation"])
 
 app.config(function($stateProvider){
     $stateProvider
-    .state('login', {
-        url:'/',
-        controller:'LoginController',
-        templateUrl:'views/login.html'
+    .state('start', {
+        url:'',
+        controller: 'StartController',
+        templateUrl: 'partials/startview.html'
     })
-    
+    .state('settings', {
+        url:'settings',
+        controller:'SettingsController',
+        templateUrl:'partials/settings.html'
+    })
     .state('lists', {
         url: '/lists',
         controller: 'ListsController',
         templateUrl: 'views/lists.html'
-    })
-    
-})
+    })   
+});
