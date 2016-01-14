@@ -5,13 +5,14 @@ app.controller('StartController', function($geolocation, $scope, $http){
         lng: undefined,
         city: undefined,
         county: undefined,
+        id: undefined,
     }
     $scope.$geolocation = $geolocation;
     $scope.baseUrl = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=';
    
 
     // basic usage
-    $geolocation.getCurrentPosition().then(function(location) {
+   $geolocation.getCurrentPosition().then(function(location) {
         $scope.location = location;
         $scope.lat = $scope.location.coords.latitude;
         $scope.lng = $scope.location.coords.longitude;
@@ -43,7 +44,24 @@ app.controller('StartController', function($geolocation, $scope, $http){
         $scope.userPos.lat = lat;
         $scope.userPos.lng = lng;
 
-        localStorage.setItem("userPosition", $scope.userPos);
+        $scope.getCountyId($scope.userPos.county);
+    };
+    
+    $scope.getCountyId = function(county){
+        
+        $http.get("files/counties.json").success(function(response){
+            angular.forEach(response, function(value, index) {
+                    if(value.namn == county){
+                        $scope.userPos.id = value.id;
+                        localStorage.setItem("userPosition", JSON.stringify($scope.userPos));
+                    }
+                  
+              
+            });
+            
+        }).error(function(error){
+            
+        });
     };
 });
 
