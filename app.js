@@ -7,14 +7,4 @@ app.config(function($stateProvider){
         controller: 'StartController',
         templateUrl: 'partials/startview.html'
     })
-    .state('settings', {
-        url:'settings',
-        controller:'SettingsController',
-        templateUrl:'partials/settings.html'
-    })
-    .state('lists', {
-        url: '/lists',
-        controller: 'ListsController',
-        templateUrl: 'views/lists.html'
-    })   
 });
