@@ -1,5 +1,6 @@
 app.service('CountyDataService', ['$http', '$geolocation', '$q', function($http, $geolocation, $q){
 
+        //get device latitude and longitude
         this.getUserPosition =  function(){
             return $q(function(resolve, reject){
                 var geolocation = $geolocation;
@@ -17,8 +18,8 @@ app.service('CountyDataService', ['$http', '$geolocation', '$q', function($http,
             });
         },
     
+        //get position information from google maps
         this.getCountyName = function(position){
-            console.log("getting county name");
             var baseUrl = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=';
             return $q(function(resolve, reject){
                 $http.get(baseUrl + position.lat + ',' + position.lng)
@@ -32,18 +33,19 @@ app.service('CountyDataService', ['$http', '$geolocation', '$q', function($http,
             });
         },
     
+        //retrieve county name and city name from json returned by Google maps    
         this.getCountyCode = function(json){
-            
             return $q(function(resolve, reject){
                 var position = {
                     city: undefined,
                     county: undefined
                 }
+                //getting name of county (always on the same position in json response)
                 var countyPosition = json["results"].length -2;
                 var county = json["results"][countyPosition].formatted_address;
                 position.county = county.split(',')[0];
 
-                //getting name of city
+                //getting name of city (always on the same position in json response)
                 var cityPosition = json["results"].length -4;
                 var city = json["results"][cityPosition].formatted_address;
                 position.city = city.split(',')[0];
@@ -56,6 +58,7 @@ app.service('CountyDataService', ['$http', '$geolocation', '$q', function($http,
             }); 
         },
     
+        //get county id from static json file with counties and id:s
         this.getCountyId = function(county){
             return $q(function(resolve, reject){
                 $http.get("files/counties.json").success(function(response){

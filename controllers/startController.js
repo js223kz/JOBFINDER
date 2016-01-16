@@ -1,5 +1,7 @@
 app.controller('StartController', function($scope, CountyDataService){
-    
+    $scope.error = "";
+    $scope.city = "";
+    $scope.county = "";
     var userPosistion = {
             lat: undefined,
             lng: undefined,
@@ -9,7 +11,7 @@ app.controller('StartController', function($scope, CountyDataService){
      }
         
     
-    $scope.error = "";
+    
     if(localStorage.getItem("userPosition") === null){
         
         CountyDataService.getUserPosition().then(function(position){
@@ -43,6 +45,10 @@ app.controller('StartController', function($scope, CountyDataService){
             $scope.error = reason;
         });
        
-    };
-
+    }else{
+        var storedPosition = localStorage.getItem("userPosition");
+        var jsonObj = JSON.parse(storedPosition);
+        $scope.city = jsonObj.city;
+        $scope.county = jsonObj.county;
+    }
 });
