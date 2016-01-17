@@ -18,7 +18,8 @@
         $result = curl_exec ($curl);
         if(curl_errno($curl)){
             //echo "fick ett fel";
-            throw new Exception(curl_error($curl));
+            echo curl_error;
+            //throw new Exception(curl_error($curl));
         }
         curl_close ($curl);  
         return $result;

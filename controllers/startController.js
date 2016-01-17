@@ -1,4 +1,4 @@
-app.controller('StartController', function($scope, CountyDataService){
+app.controller('StartController', function($scope, CountyDataService, PlatsbankenService){
     $scope.error = "";
     $scope.city = "";
     $scope.county = "";
@@ -10,7 +10,17 @@ app.controller('StartController', function($scope, CountyDataService){
             id: undefined,
      }
         
-    
+/*  [
+ur
+l
+]/platsannons
+er
+/matchning?lanid={M}&kommunid={M}&yrke
+s
+id={M}& 
+nyckelord={M}&sida={V}
+&
+antalrader={V}  */
     
     if(localStorage.getItem("userPosition") === null){
         
@@ -50,5 +60,7 @@ app.controller('StartController', function($scope, CountyDataService){
         var jsonObj = JSON.parse(storedPosition);
         $scope.city = jsonObj.city;
         $scope.county = jsonObj.county;
+        var county = jsonObj.id;
+        PlatsbankenService.getAvailableJobs(county);
     }
 });
