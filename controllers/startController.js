@@ -2,43 +2,72 @@ app.controller('StartController', function($scope, CountyDataService, Platsbanke
     $scope.error = "";
     $scope.city = "";
     $scope.county = "";
-    var userPosistion = {
+    var userPosition = {
             lat: undefined,
             lng: undefined,
             city: undefined,
             county: undefined,
             id: undefined,
      }
-        
-/*  [
-ur
-l
-]/platsannons
-er
-/matchning?lanid={M}&kommunid={M}&yrke
-s
-id={M}& 
-nyckelord={M}&sida={V}
-&
-antalrader={V}  */
-    
     if(localStorage.getItem("userPosition") === null){
+        setUserPosition();
+    }else{
         
-        CountyDataService.getUserPosition().then(function(position){
+        var storedPosition = localStorage.getItem("userPosition");
+        var jsonObj = JSON.parse(storedPosition);
+        $scope.city = jsonObj.city;
+        $scope.county = jsonObj.county;
+        var countyId = jsonObj.id;
+        console.log(countyId);
+        //PlatsbankenService.getAvailableJobs(countyId);
+        
+        
+        
+        /*var position = CountyDataService.getUserPosition().then(function(position){          
+        var lat = jsonObj.lat;
+        var lng = jsonObj.lng;
+            
+            if(position.lat != lat || position.lng != lng){
+                $scope.setUserPosition();
+            }
+            
+        }, function(reason){
+            $scope.error = reason; 
+        });
+        
+        
+        $scope.city = jsonObj.city;
+        $scope.county = jsonObj.county;
+        var county = jsonObj.id;*/
+        //PlatsbankenService.getAvailableJobs(county);
+    }    
+    
+    $scope.upDatePosition = function(){
+        setUserPosition();
+    }
+    
+    function setUserPosition(){
+       CountyDataService.getUserPosition().then(function(position){
             if(angular.isNumber(position.lat) && angular.isNumber(position.lng)){
+                userPosition.lat = position.lat;
+                userPosition.lng = position.lng;
                 
-                userPosistion.lat = position.lat;
-                userPosistion.lng = position.lng;
                 CountyDataService.getCountyName(position).then(function(json){
-                    
+                                    
                     CountyDataService.getCountyCode(json).then(function(position){
-                        userPosistion.county = position.county;
-                        userPosistion.city = position.city;
-                        
-                        CountyDataService.getCountyId().then(function(countyId){
-                            userPosistion.id = countyId;
-                            localStorage.setItem("userPosition", JSON.stringify(userPosistion));
+                        userPosition.county = position.county;
+                        userPosition.city = position.city;
+                                               
+                        CountyDataService.getCountyId(userPosition.county).then(function(countyId){
+                            userPosition.id = countyId;
                             
+                            if(localStorage.getItem("userPosition") != undefined){
+                                localStorage.removeItem("userPosition");
+                                //localStorage.removeNamedItem("userPosition");
+                            }
+                            localStorage.setItem("userPosition", JSON.stringify(userPosition));
+                            $scope.city = userPosition.city;
+                            $scope.county = userPosition.county;
                         }, function(reason){
                            $scope.error = reason; 
                         });
@@ -53,14 +82,6 @@ antalrader={V}  */
             }
         }, function(reason){
             $scope.error = reason;
-        });
-       
-    }else{
-        var storedPosition = localStorage.getItem("userPosition");
-        var jsonObj = JSON.parse(storedPosition);
-        $scope.city = jsonObj.city;
-        $scope.county = jsonObj.county;
-        var county = jsonObj.id;
-        PlatsbankenService.getAvailableJobs(county);
-    }
+        }); 
+    }   
 });
