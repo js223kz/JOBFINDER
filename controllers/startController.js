@@ -2,86 +2,73 @@ app.controller('StartController', function($scope, CountyDataService, Platsbanke
     $scope.error = "";
     $scope.city = "";
     $scope.county = "";
-    var userPosition = {
-            lat: undefined,
-            lng: undefined,
-            city: undefined,
-            county: undefined,
-            id: undefined,
-     }
-    if(localStorage.getItem("userPosition") === null){
-        setUserPosition();
-    }else{
-        
-        var storedPosition = localStorage.getItem("userPosition");
-        var jsonObj = JSON.parse(storedPosition);
-        $scope.city = jsonObj.city;
-        $scope.county = jsonObj.county;
-        var countyId = jsonObj.id;
-        console.log(countyId);
-        //PlatsbankenService.getAvailableJobs(countyId);
-        
-        
-        
-        /*var position = CountyDataService.getUserPosition().then(function(position){          
-        var lat = jsonObj.lat;
-        var lng = jsonObj.lng;
-            
-            if(position.lat != lat || position.lng != lng){
-                $scope.setUserPosition();
-            }
+    $scope.jobs = "";
+    $scope.isDataInCache = false;
+    
+    
+    
+    $scope.getCachedPosition = function(){
+        CountyDataService.getCachedPosition().then(function(position){
+            $scope.updatePositionText(position).then(function(){
+            }, function(reason){
+           });
+        }, function(reason){
+            $scope.error = reason;                                   
+        });
+    };
+    
+    $scope.updatePositionText = function(position){
+        $scope.city = position.city;
+        $scope.county = position.county;
+    };
+    
+    
+   $scope.upDateJobs = function(position){
+        //sätta en tidsgräns annars hämta cachat
+        PlatsbankenService.upDateJobs(position.id).then(function(jobs){
+            $scope.jobs = jobs;
+        }, function(reason){
+            $scope.error = reason;
+        });
+    };
+    
+    $scope.getCachedJobs = function(){
+        PlatsbankenService.getCachedJobs().then(function(jobs){
             
         }, function(reason){
-            $scope.error = reason; 
+            $scope.error = reason;
         });
-        
-        
-        $scope.city = jsonObj.city;
-        $scope.county = jsonObj.county;
-        var county = jsonObj.id;*/
-        //PlatsbankenService.getAvailableJobs(county);
-    }    
+    };
     
     $scope.upDatePosition = function(){
-        setUserPosition();
-    }
-    
-    function setUserPosition(){
-       CountyDataService.getUserPosition().then(function(position){
-            if(angular.isNumber(position.lat) && angular.isNumber(position.lng)){
-                userPosition.lat = position.lat;
-                userPosition.lng = position.lng;
-                
-                CountyDataService.getCountyName(position).then(function(json){
-                                    
-                    CountyDataService.getCountyCode(json).then(function(position){
-                        userPosition.county = position.county;
-                        userPosition.city = position.city;
-                                               
-                        CountyDataService.getCountyId(userPosition.county).then(function(countyId){
-                            userPosition.id = countyId;
-                            
-                            if(localStorage.getItem("userPosition") != undefined){
-                                localStorage.removeItem("userPosition");
-                                //localStorage.removeNamedItem("userPosition");
-                            }
-                            localStorage.setItem("userPosition", JSON.stringify(userPosition));
-                            $scope.city = userPosition.city;
-                            $scope.county = userPosition.county;
-                        }, function(reason){
-                           $scope.error = reason; 
-                        });
-                    }, function(reason){
-                        $scope.error = reason;
-                    });
+        CountyDataService.updateUserPosition().then(function(position){
+            $scope.updatePositionText(position).then(function(){
+                $scope.upDateJobs(position.id).then(function(){
+                    
                 }, function(reason){
                     $scope.error = reason;
                 });
-            }else{
-                $scope.error = "Positionen har angivits i ett felaktigt format. Processen avbryts.";
-            }
+                
+            }, function(reason){
+                $scope.error = reason;
+            });
         }, function(reason){
             $scope.error = reason;
-        }); 
+        });
+    };
+         
+    if(sessionStorage.getItem("userPosition") === null){
+        $scope.upDatePosition();
+    }else{
+        $scope.isDataInCache = true;
+        $scope.getCachedPosition().then(function(){
+            $scope.getCachedJobs().then(function(){
+                
+            }, function(reason){
+                $scope.error = reason;
+            });
+        }, function(reason){
+            $scope.error = reason;
+        });
     }   
 });
