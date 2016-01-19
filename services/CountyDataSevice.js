@@ -41,12 +41,12 @@ app.service('CountyDataService', ['$http', '$geolocation', '$window', '$q', func
     function getCountyName(position){
         var baseUrl = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=';
         var deferred = $q.defer();
-        
-        $http.get(baseUrl + position.lat + ',' + position.lng)
         //$http.get(baseUrl + '55.424908' + ',' +'12.975830')
-        .success(function(response){
+        //$http.get(baseUrl + position.lat + ',' + position.lng)
+        $http.get(baseUrl + position.lat + ',' + position.lng).then(function(response){
+            console.log(response);
             deferred.resolve(response);
-        }).error(function(error){
+        }, function(error){
             deferred.reject("Vi kan för tillfället inte hämta information om din position. Försök igen!");
         }); 
         return deferred.promise;
@@ -60,13 +60,13 @@ app.service('CountyDataService', ['$http', '$geolocation', '$window', '$q', func
             county: undefined
         }
         //getting name of county (always on the same position in json response)
-        var countyPosition = json["results"].length -2;
-        var county = json["results"][countyPosition].formatted_address;
+        var countyPosition = json.data["results"].length -2;
+        var county = json.data["results"][countyPosition].formatted_address;
         position.county = county.split(',')[0];
 
         //getting name of city (always on the same position in json response)
-        var cityPosition = json["results"].length -4;
-        var city = json["results"][cityPosition].formatted_address;
+        var cityPosition = json.data["results"].length -4;
+        var city = json.data["results"][cityPosition].formatted_address;
         position.city = city.split(',')[0];
 
         if(position.city != undefined || position.county != undefined){

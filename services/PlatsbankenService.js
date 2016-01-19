@@ -1,11 +1,14 @@
-app.service('PlatsbankenService', ['$http', '$q', function($http, $q){
-   this.upDateJobs = function(county){ 
+app.service('PlatsbankenService', ['$http', '$q', '$filter', function($http, $q, $filter){
+    var latestUpdate = 'latestUpdate';
+    var jobList = 'jobList';
+    
+    this.upDateJobs = function(countyId){ 
         var deferred = $q.defer();
-        $http.get('backend/GetAvailableJobs.php?county='+county).then(function(response){
+        $http.get('backend/GetAvailableJobs.php?county='+countyId).then(function(response){
             var date = new Date();
-            sessionStorage.setItem('lastUpdated', JSON.stringify(date));
-            sessionStorage.setItem('jobList', JSON.stringify(response));
-            deferred.resolve(JSON.parse(sessionStorage.getItem('jobList')));                   
+            sessionStorage.setItem(latestUpdate, date);
+            sessionStorage.setItem(jobList, JSON.stringify(response));
+            deferred.resolve(JSON.parse(sessionStorage.getItem(jobList)));                   
         }, function(error){
             deferred.reject("Vi kan för närvarande inte hämta information från platsbanken. Försök igen om en stund.");
         });
@@ -13,7 +16,7 @@ app.service('PlatsbankenService', ['$http', '$q', function($http, $q){
     },    
     
     this.getCachedJobs = function(){    
-        var cachedJobs = JSON.parse(sessionStorage.getItem('jobList'));
+        var cachedJobs = JSON.parse(sessionStorage.getItem(jobList));
         //var jobs = storedJobs.matchningslista.matchningdata;
         if(cachedJobs != undefined){
             return cachedJobs;
@@ -21,4 +24,10 @@ app.service('PlatsbankenService', ['$http', '$q', function($http, $q){
             return null;
         } 
     } 
+   
+   this.getLatestUpdate = function(){
+       var update = sessionStorage.getItem(latestUpdate);
+       return update;
+   }
+   
 }]);
