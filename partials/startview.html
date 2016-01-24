@@ -1,14 +1,28 @@
+<main class="col-xs-10 col-xs-offset-0 col-sm-8 col-sm-offset-1 col-md-8 col-md-offset-1 col-lg-8 col-lg-offset-1"> 
+    <div class="listcontainer">
+        <table class="list">
+             
+        <thead>
+            <td>
+                <p class="positiontext" ng-hide="userPosition">{{city}} {{county}}</p>
+            </td>
+            <td>
+            <button class="updatepositionbutton" type="button" ng-click="upDatePosition()">
+                <span class="refresh glyphicon glyphicon-refresh" ng-click="upDatePosition()" aria-hidden="true"></span>
+            </button>
+            </td>
+            </thead>
+            <tbody>
+                <div>
+                    <tr ng-repeat="job in jobs" ng-bind-html-unsafe="job">
+                        <td>
+                            <p class="jobheadline">{{job.annonsrubrik}}</p>
+                            <p class="subtext">{{job.arbetsplatsnamn}}, {{job.kommunnamn}}</p>
+                        </td>
+                    </tr>
+                </div>
+            </tbody>
+        </table>
+    </div>
+</main>
 
-<div class="col-sm-10 col-sm-offset-2 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4" ng-hide="settings">
-    <p class="error">{{error}}</p>
-    <h1 ng-hide="userPosition">{{city}} {{county}}</h1>
-    <button ng-click="upDatePosition()">Uppdatera plats</button>
-    <div>
-    <ul>
-    <li ng-repeat="job in jobs.data"  ng-bind-html-unsafe="job">
-        {{job}}
-    </li>
-    </ul>
-</div>
-
-</div>

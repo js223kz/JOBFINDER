@@ -19,21 +19,38 @@ app.controller('StartController', function($scope, $filter, CountyDataService, P
     };
       
    $scope.upDateJobs = function(countyId){
-        //sätta en tidsgräns annars hämta cachat
-        PlatsbankenService.upDateJobs(countyId).then(function(jobs){
-            $scope.jobs = jobs;
+        PlatsbankenService.upDateJobs(countyId).then(function(){
+            $scope.jobs = PlatsbankenService.getCachedJobs();
         }, function(reason){
             $scope.error = reason;
         });
     };
     
-    $scope.getCachedJobs = function(){
+    $scope.getCachedJobs = function(){       
         $scope.jobs = PlatsbankenService.getCachedJobs();
+        console.log($scope.jobs);
         
         if($scope.jobs === null){
             $scope.upDatePosition();
         }
     };
+    
+    $scope.getJobs = function(){
+        var position = CountyDataService.getCachedPosition();
+        var timeDifference = $scope.checkLatestUpdateJobs();
+        var milli = 60 * 60 * 1000;
+        
+        if(timeDifference/milli > 3){
+            console.log("dags att uppdater");
+            $scope.upDateJobs(position.id);
+            
+        }else{
+            console.log("inte dags att uppdatera");
+            $scope.getCachedPosition();
+            $scope.isDataInCache = true;
+            $scope.getCachedJobs();
+        }
+    }
     
     $scope.upDatePosition = function(){
         CountyDataService.updateUserPosition().then(function(position){
@@ -61,18 +78,8 @@ app.controller('StartController', function($scope, $filter, CountyDataService, P
     if(CountyDataService.getCachedPosition() === null){
         $scope.upDatePosition();
     }else{
-        var position = CountyDataService.getCachedPosition();
-        var timeDifference = $scope.checkLatestUpdateJobs();
-        var milli = 60 * 60 * 1000;
-       
-        if(timeDifference/milli > 3){
-            $scope.upDateJobs(position.id);
-            console.log("dags att uppdater");
-        }else{
-            console.log("inte dags att uppdatera");
-            $scope.getCachedPosition();
-            $scope.isDataInCache = true;
-            $scope.getCachedJobs();
-        }       
+        $scope.getCachedPosition();
+        $scope.isDataInCache = true;
+        $scope.getJobs();  
     }   
 });

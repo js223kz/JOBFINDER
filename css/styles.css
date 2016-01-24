@@ -1,3 +1,81 @@
-#map{
-    height: 180px;
+body{
+    height: 100%;  
+    opacity: 0.6;
+    margin-top: 40px;
+}
+
+main{
+    max-height: 900px;
+}
+
+.logocontainer{
+    height: auto;
+    width: auto;
+     -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    margin-bottom: 20px;
+}
+
+.logo{
+    font-size: 2vw;
+    color: blue;
+   
+}
+
+.positiontext{
+    font-family: "Verdana";
+    font-size: 3vw;
+    position: relative;
+    vertical-align: middle;
+    float: left;
+    color: darkkhaki;
+    font-weight: 800;
+}
+
+.updatepositionbutton{
+    border:0px solid transparent;
+    background-color: #fff;
+    font-size: 3vw;
+    color: deeppink;
+    height: 100%;
+    float: left;
+
+}
+
+span{
+    vertical-align: middle;
+    font-weight: 800;
+}
+
+.listcontainer{
+    background-color: #fff;
+    margin-top: auto;
+    min-height: 500px;
+    max-height: 800px;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+thead{
+    background-color: #fff;
+    border-bottom: 1px solid blue;
+}
+
+tr{
+   border-bottom: 1px solid blue; 
+}
+
+.jobheadline{
+    font-family: "Verdana";
+    color: #000;
+    font-size: 2vW;
+    font-weight: 800;
+}
+
+.subtext{
+    font-family: "Verdana";
+    color: #000;
+    font-size: 2vW;
 }

@@ -4,8 +4,7 @@ app.service('CountyDataService', ['$http', '$geolocation', '$window', '$q', func
     function supported() {
         return 'geolocation' in $window.navigator;
     }
- 
-    //returns chached position data
+  //returns chached position data
     this.getCachedPosition = function(){
         var position = JSON.parse(sessionStorage.getItem('userPosition'));
         if(position != undefined){
@@ -13,8 +12,7 @@ app.service('CountyDataService', ['$http', '$geolocation', '$window', '$q', func
         }else{
             return null;
         }
-    }
-       
+    }    
     //returns device current position
     function getUserPosition(){
         var deferred = $q.defer();
