@@ -41,7 +41,6 @@ main{
     color: deeppink;
     height: 100%;
     float: left;
-
 }
 
 span{
@@ -72,6 +71,12 @@ tr{
     color: #000;
     font-size: 2vW;
     font-weight: 800;
+    width: 90%;
+    float: left;
+}
+.jobinfobutton{
+    width: 10%;
+    font-size: 2vw;
 }
 
 .subtext{

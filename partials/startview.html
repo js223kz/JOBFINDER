@@ -8,7 +8,7 @@
             </td>
             <td>
             <button class="updatepositionbutton" type="button" ng-click="upDatePosition()">
-                <span class="refresh glyphicon glyphicon-refresh" ng-click="upDatePosition()" aria-hidden="true"></span>
+                <span class="refresh glyphicon glyphicon-refresh" aria-hidden="true"></span>
             </button>
             </td>
             </thead>
@@ -16,7 +16,12 @@
                 <div>
                     <tr ng-repeat="job in jobs" ng-bind-html-unsafe="job">
                         <td>
-                            <p class="jobheadline">{{job.annonsrubrik}}</p>
+                            <div>
+                                <p class="jobheadline">{{job.annonsrubrik}}</p>
+                                <button class="updatepositionbutton" type="button" ng-click="getjobDetails()">
+                                    <span class="jobinfobutton glyphicon glyphicon-collapse-up" aria-hidden="true"></span>
+                                </button>
+                            </div>
                             <p class="subtext">{{job.arbetsplatsnamn}}, {{job.kommunnamn}}</p>
                         </td>
                     </tr>
@@ -25,4 +30,3 @@
         </table>
     </div>
 </main>
-
