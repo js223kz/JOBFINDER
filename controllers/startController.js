@@ -1,4 +1,4 @@
-app.controller('StartController', function($scope, $filter, CountyDataService, PlatsbankenService){
+app.controller('StartController', function($scope, $state, $filter, CountyDataService, PlatsbankenService, JobIdService){
     $scope.error = "";
     $scope.city = "";
     $scope.county = "";
@@ -53,7 +53,9 @@ app.controller('StartController', function($scope, $filter, CountyDataService, P
     }
     
     $scope.getjobDetails = function(id){
-        console.log(id);
+        JobIdService.sendId(id);
+       // $location.path('/dashboard')
+        $state.go('jobdetails');
     }
     
     $scope.upDatePosition = function(){

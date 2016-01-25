@@ -7,4 +7,9 @@ app.config(function($stateProvider){
         controller: 'StartController',
         templateUrl: 'partials/startview.html'
     })
+    .state('jobdetails', {
+        url:'/jobbdetaljer',
+        controller: 'JobDetailsController',
+        templateUrl: 'partials/DetailsView.html'
+    })
 });
