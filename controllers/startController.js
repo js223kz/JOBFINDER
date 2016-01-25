@@ -52,6 +52,10 @@ app.controller('StartController', function($scope, $filter, CountyDataService, P
         }
     }
     
+    $scope.getjobDetails = function(id){
+        console.log(id);
+    }
+    
     $scope.upDatePosition = function(){
         CountyDataService.updateUserPosition().then(function(position){
             $scope.updatePositionText(position);
@@ -78,6 +82,7 @@ app.controller('StartController', function($scope, $filter, CountyDataService, P
     if(CountyDataService.getCachedPosition() === null){
         $scope.upDatePosition();
     }else{
+       
         $scope.getCachedPosition();
         $scope.isDataInCache = true;
         $scope.getJobs();  
