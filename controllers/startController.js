@@ -13,6 +13,14 @@ app.controller('StartController', function($scope, $state, $filter, CountyDataSe
         $scope.updatePositionText(position);
     };
     
+    $scope.getCachedJobs = function(){       
+        $scope.jobs = PlatsbankenService.getCachedJobs();
+        
+        if($scope.jobs === null){
+            $scope.upDatePosition();
+        }
+    };
+       
     $scope.updatePositionText = function(position){
         $scope.city = position.city;
         $scope.county = position.county;
@@ -20,23 +28,14 @@ app.controller('StartController', function($scope, $state, $filter, CountyDataSe
       
    $scope.upDateJobs = function(countyId){
         PlatsbankenService.upDateJobs(countyId).then(function(){
-            $scope.jobs = PlatsbankenService.getCachedJobs();
+            $scope.jobs = $scope.getCachedJobs();
         }, function(reason){
             $scope.error = reason;
         });
     };
     
-    $scope.getCachedJobs = function(){       
-        $scope.jobs = PlatsbankenService.getCachedJobs();
-        console.log($scope.jobs);
-        
-        if($scope.jobs === null){
-            $scope.upDatePosition();
-        }
-    };
-    
     $scope.getJobs = function(){
-        var position = CountyDataService.getCachedPosition();
+        var position = $scope.getCachedPosition();
         var timeDifference = $scope.checkLatestUpdateJobs();
         var milli = 60 * 60 * 1000;
         

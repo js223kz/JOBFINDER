@@ -1,5 +1,5 @@
 app.factory('JobIdService',function($rootScope, $timeout){
-  var service = {};
+var service = {};
   service.id = false;
   service.sendId = function(id){
       this.id = id;

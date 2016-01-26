@@ -1,9 +1,16 @@
-app.controller('JobDetailsController', function($scope, CountyDataService, PlatsbankenService, JobIdService){
-
+app.controller('JobDetailsController', function($scope, JobIdService, JobDetailsService){
+    $scope.error = "";
+    $scope.id = "";
+    
     $scope.$on('id_shared',function(){
-      var id = JobIdService.getId();
-        console.log(id);
-    });
+        $scope.id = JobIdService.getId();
+        JobDetailsService.getJobDetails($scope.id).then(function(jobDetails){
+        }, function(error){
+        $scope.error = error;
+        });
 
-  
+     });
+    
+     
+
 });
