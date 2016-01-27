@@ -6,7 +6,7 @@ include('PlatsbankenApiRequest.php');
         $jobId = $_GET['jobid'];
         $jobDetails = getResponse("platsannonser/$jobId");
 
-        header('Content-Type: application/json');
+        //header('Content-Type: application/json');
         echo $jobDetails;
     }
 ?>

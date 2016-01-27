@@ -2,11 +2,10 @@ app.service('PlatsbankenService', ['$http', '$q', '$filter', function($http, $q,
     var latestUpdate = 'latestUpdate';
     var jobList = 'jobList';
      
-    this.getCachedJobs = function(){    
+    this.getCachedJobs = function(){ 
         var cachedJobs = JSON.parse(sessionStorage.getItem(jobList));
-        var jobs = cachedJobs.data.matchningslista.matchningdata;
         if(cachedJobs != undefined){
-            return jobs;
+            return cachedJobs.data.matchningslista.matchningdata;
         }else{
             return null;
         } 

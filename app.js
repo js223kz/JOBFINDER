@@ -8,7 +8,7 @@ app.config(function($stateProvider){
         templateUrl: 'partials/startview.html'
     })
     .state('jobdetails', {
-        url:'/jobbdetaljer',
+        url:'jobbdetaljer',
         controller: 'JobDetailsController',
         templateUrl: 'partials/DetailsView.html'
     })

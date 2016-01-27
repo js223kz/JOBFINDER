@@ -84,3 +84,16 @@ tr{
     color: #000;
     font-size: 2vW;
 }
+pre {
+    white-space: pre-wrap;       /* CSS 3 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    word-break: keep-all;
+    padding: 0;
+}
+.jobtext{
+    margin-left: 30px;
+}
+

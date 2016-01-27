@@ -1,6 +1,5 @@
 <?php
-
-     function getResponse($urlExtension){
+    function getResponse($urlExtension){
         $curl = curl_init();
         $url = "http://api.arbetsformedlingen.se/af/v0/" . $urlExtension;
         
@@ -17,13 +16,11 @@
             
         $result = curl_exec ($curl);
         if(curl_errno($curl)){
-            //echo "fick ett fel";
+            echo "fick ett fel";
             echo curl_error;
-            //throw new Exception(curl_error($curl));
+            throw new Exception(curl_error($curl));
         }
         curl_close ($curl);  
         return $result;
-    }
-
-    
+    }   
 ?>

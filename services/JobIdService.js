@@ -3,12 +3,14 @@ var service = {};
   service.id = false;
   service.sendId = function(id){
       this.id = id;
-      $timeout(function(){
-         $rootScope.$broadcast('id_shared');
-      },100);
+      $rootScope.$broadcast('id_shared');
   };
   service.getId = function(){
     return this.id;
   };
   return service;
 });
+
+/*$timeout(function(){
+         $rootScope.$broadcast('id_shared');
+      },100);*/
