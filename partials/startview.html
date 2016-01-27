@@ -1,7 +1,7 @@
 <main class="col-xs-10 col-xs-offset-0 col-sm-8 col-sm-offset-1 col-md-8 col-md-offset-1 col-lg-8 col-lg-offset-1"> 
-    <div class="listcontainer">
+    <p ng-hide="doneLoading">Loading...</p>
+    <div ng-show="doneLoading" class="listcontainer">
         <table class="list">
-             
         <thead>
             <td>
                 <p class="positiontext" ng-hide="userPosition">{{city}} {{county}}</p>

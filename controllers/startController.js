@@ -3,9 +3,11 @@ app.controller('StartController', function($scope, $state, $filter, CountyDataSe
     $scope.city = "";
     $scope.county = "";
     $scope.jobs = "";
+    $scope.doneLoading = false;
     $scope.isDataInCache = false;
  
     $scope.getjobDetails = function(id){
+        $scope.doneLoading = false;
         JobIdService.sendId(id);
         $state.go('jobdetails');
     };
@@ -22,11 +24,13 @@ app.controller('StartController', function($scope, $state, $filter, CountyDataSe
         if(timeToUpdate){
             console.log("dags att uppdatera");
             PlatsbankenService.upDateJobs(position.id).then(function(){
+                
             }, function (error){
                 $scope.error = error;
             });
-        }
-         $scope.jobs = PlatsbankenService.getCachedJobs();
+        }   
+        $scope.jobs = PlatsbankenService.getCachedJobs();
+        $scope.doneLoading = true;
     };
     
     $scope.upDatePosition = function(){
@@ -37,6 +41,7 @@ app.controller('StartController', function($scope, $state, $filter, CountyDataSe
                 if($scope.jobs == null){
                     $scope.error = "Det finns inga lediga jobb där du befinner dig. Vi föreslår en flytt.";
                 }
+                $scope.doneLoading = true;
             }, function(error){
                 $scope.error = reason;
             })
