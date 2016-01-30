@@ -1,35 +1,40 @@
-<div class="jobdetailsContainer col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-    <h1>{{headLine}}</h1>    
-    <pre>
-    <p>
-    Antal platser: {{numberOfPositions}}
-    Arbetsplats: {{workPlace}}
-    Adress: {{address}}, {{city}}
-    Hemsida: {{webPage}}
-    Telefon: {{phone}}
-    </p>
-    </pre>
-    <pre>
-    <p class="jobtext">{{text}}</p>
-    </pre>
-    <pre>
-    <p>
-    Arbetstider: {{dailyHours}}
-    Varaktighet: {{timeSpan}}
-    Löneform: {{salary}}
-    </p>
-    </pre>
-    <pre ng-show=car>
-    <p>
-    Krav på egen bil: Ja
-    </p>
-    </pre>
-    <pre>
-    <p>
-    Skicka ansökan via webbplats: {{applicationWeb}}
-    Skicka ansökan via e-post: {{applicationEmail}}
-    Sista ansökningsdagen: {{lastDay}}
-    Övrig information om ansökan: {{otherInfo}}
-    </p>
-    </pre>
-</div>
+<main class="jobdetailsContainer col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+    <p ng-hide="doneLoading">Loading...</p>
+    <p class="error">{{error}}</p>
+    <div ng-show="doneLoading">
+        <button ng-click="goBack()">Tillbaka</button>
+        <h1>{{headLine}}</h1>    
+        <pre>
+        <p>
+        Antal platser: {{numberOfPositions}}
+        Arbetsplats: {{workPlace}}
+        Adress: {{address}}, {{city}}
+        Hemsida: {{webPage}}
+        Telefon: {{phone}}
+        </p>
+        </pre>
+        <pre>
+        <p class="jobtext">{{text}}</p>
+        </pre>
+        <pre>
+        <p>
+        Arbetstider: {{dailyHours}}
+        Varaktighet: {{timeSpan}}
+        Löneform: {{salary}}
+        </p>
+        </pre>
+        <pre ng-show=car>
+        <p>
+        Krav på egen bil: Ja
+        </p>
+        </pre>
+        <pre>
+        <p>
+        Skicka ansökan via webbplats: {{applicationWeb}}
+        Skicka ansökan via e-post: {{applicationEmail}}
+        Sista ansökningsdagen: {{lastDay}}
+        Övrig information om ansökan: {{otherInfo}}
+        </p>
+        </pre>
+    </div>
+</main>

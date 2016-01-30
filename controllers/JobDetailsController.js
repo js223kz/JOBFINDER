@@ -1,5 +1,5 @@
-app.controller('JobDetailsController', function($scope, JobIdService, JobDetailsService){
-    
+app.controller('JobDetailsController', function($scope, JobIdService, JobDetailsService, $state){
+    $scope.doneLoading = false;
     $scope.setJobtextInfo = function(){
         var data = JobDetailsService.getCachedJobDetails();
         var base = data.platsannons;
@@ -21,7 +21,13 @@ app.controller('JobDetailsController', function($scope, JobIdService, JobDetails
         $scope.applicationEmail = base.ansokan.epostadress;
         $scope.lastDay = base.ansokan.sista_ansokningsdag;
         $scope.otherInfo = base.ansokan.ovrigt_om_ansokan;
+        
+        $scope.doneLoading = true;
     };
+    
+    $scope.goBack = function(){
+        $state.go('start');
+    }
     
     if(JobDetailsService.getCachedJobDetails() == null){
         JobDetailsService.getJobDetails(JobIdService.getId()).then(function(){
@@ -33,8 +39,5 @@ app.controller('JobDetailsController', function($scope, JobIdService, JobDetails
     }else{
         $scope.setJobtextInfo();
     }
-        
-    
-
 });
            

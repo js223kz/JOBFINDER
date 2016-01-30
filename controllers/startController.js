@@ -37,16 +37,19 @@ app.controller('StartController', function($scope, $state, $filter, CountyDataSe
         CountyDataService.updateUserPosition().then(function(position){
             $scope.updatePositionText(position);
             PlatsbankenService.upDateJobs(position.id).then(function(){
-               $scope.jobs = PlatsbankenService.getCachedJobs();
-                if($scope.jobs == null){
-                    $scope.error = "Det finns inga lediga jobb där du befinner dig. Vi föreslår en flytt.";
-                }
-                $scope.doneLoading = true;
+               PlatsbankenService.getCachedJobs().then(function(jobs){
+                   $scope.jobs = jobs;
+                   $scope.doneLoading = true;
+
+               }, function(error){
+                   $scope.error = error;
+               })
+
             }, function(error){
-                $scope.error = reason;
+                $scope.error = error;
             })
-        }, function(reason){
-            $scope.error = reason;
+        }, function(error){
+            $scope.error = error;
         });
     };  
     

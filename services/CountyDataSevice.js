@@ -1,18 +1,26 @@
 "use strict";
-app.service('CountyDataService', ['$http', '$geolocation', '$window', '$q', function($http, $geolocation, $window, $q){
+app.service('CountyDataService', function($http, $geolocation, $window, $q, SessionStorageService){
+
+    var userPos = SessionStorageService.positionSession();
 
     function supported() {
         return 'geolocation' in $window.navigator;
     }
-  //returns chached position data
+    //returns chached position data
     this.getCachedPosition = function(){
-        var position = JSON.parse(sessionStorage.getItem('userPosition'));
-        if(position != undefined){
-            return position;
-        }else{
+
+        try{
+            var position = JSON.parse(sessionStorage.getItem(userPos));
+            if(position != undefined){
+                return position;
+            }else{
+                return null;
+            }
+        }catch(error){
             return null;
         }
     }    
+
     //returns device current position
     function getUserPosition(){
         var deferred = $q.defer();
@@ -30,7 +38,7 @@ app.service('CountyDataService', ['$http', '$geolocation', '$window', '$q', func
                 }
             });        
         }else{
-           deferred.reject("Din browser stödjer inte geolocation");
+           deferred.reject("Din browser stödjer inte geolocation.");
         }
         return deferred.promise;  
     }
@@ -39,13 +47,12 @@ app.service('CountyDataService', ['$http', '$geolocation', '$window', '$q', func
     function getCountyName(position){
         var baseUrl = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=';
         var deferred = $q.defer();
-        //$http.get(baseUrl + '55.424908' + ',' +'12.975830')
-        //$http.get(baseUrl + position.lat + ',' + position.lng)
+
         $http.get(baseUrl + position.lat + ',' + position.lng).then(function(response){
             console.log(response);
             deferred.resolve(response);
         }, function(error){
-            deferred.reject("Vi kan för tillfället inte hämta information om din position. Försök igen!");
+            deferred.reject("Vi kan för tillfället inte hämta information om din position från Google Maps.");
         }); 
         return deferred.promise;
     }
@@ -70,7 +77,7 @@ app.service('CountyDataService', ['$http', '$geolocation', '$window', '$q', func
         if(position.city != undefined || position.county != undefined){
             deferred.resolve(position);
         }else{
-            deferred.reject("Vi kan för tillfället inte hämta information om din position. Försök igen!")
+            deferred.reject("Vi kan för tillfället inte hämta information om vilket län du befinner dig i.")
         } 
         return deferred.promise;
     }
@@ -78,14 +85,20 @@ app.service('CountyDataService', ['$http', '$geolocation', '$window', '$q', func
     //get county id from static json file with counties and id:s
     function getCountyId(county){
         var deferred = $q.defer();
+        var countyId = null;
         $http.get("/files/counties.json").then(function(response){
-            for(var i = 0; i < response.data.length; i++){
-               if(response.data[i].namn === county){
-                   deferred.resolve(response.data[i].id);
-               }
-            }             
+            response.data.forEach(function(countyName){
+                if(countyName.namn === county){
+                    countyId = countyName.id;
+                }
+            });
+            if(countyId != null){
+                deferred.resolve(countyId)
+            }else{
+                deferred.reject("Länet du befinner dig i finns inte i listan över Sveriges län.");
+            }
         }, function(error){
-            deferred.resolve("Vi kan för tillfället inte avgöra vilket län du befinner dig och därför inte hämta information från Platsbanken.");
+            deferred.reject("Länet du befinner dig i finns inte i listan över Sveriges län.");
         });
         return deferred.promise;
     }   
@@ -113,8 +126,9 @@ app.service('CountyDataService', ['$http', '$geolocation', '$window', '$q', func
 
                     getCountyId(positionData.county).then(function(countyId){
                         userPosition.id = countyId;
-                        sessionStorage.setItem("userPosition", JSON.stringify(userPosition));
-                        deferred.resolve(userPosition);         
+                        sessionStorage.setItem(userPos, JSON.stringify(userPosition));
+                        deferred.resolve(userPosition);
+
                     }, function(reason){
                         deferred.reject(reason);
                     });
@@ -123,7 +137,7 @@ app.service('CountyDataService', ['$http', '$geolocation', '$window', '$q', func
                     deferred.reject(reason);
                 });
             }, function(reason){
-                deferred.reject(reject);
+                deferred.reject(reason);
             });
 
          }else{
@@ -135,4 +149,4 @@ app.service('CountyDataService', ['$http', '$geolocation', '$window', '$q', func
         });
         return deferred.promise;
     }
-}]);
+});

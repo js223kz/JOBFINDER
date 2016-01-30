@@ -15,10 +15,8 @@
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
             
         $result = curl_exec ($curl);
-        if(curl_errno($curl)){
-            echo "fick ett fel";
-            echo curl_error;
-            throw new Exception(curl_error($curl));
+        if($errno = curl_errno($curl)) {
+            throw new Exception();
         }
         curl_close ($curl);  
         return $result;

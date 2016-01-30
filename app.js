@@ -5,11 +5,13 @@ app.config(function($stateProvider){
     .state('start', {
         url:'',
         controller: 'StartController',
-        templateUrl: 'partials/startview.html'
+        templateUrl: 'partials/StartView.html'
     })
     .state('jobdetails', {
-        url:'jobbdetaljer',
+        url:'/jobbdetaljer',
         controller: 'JobDetailsController',
         templateUrl: 'partials/DetailsView.html'
     })
 });
+
+    
