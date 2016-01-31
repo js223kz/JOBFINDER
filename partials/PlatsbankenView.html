@@ -1,0 +1,33 @@
+<main class="col-xs-10 col-xs-offset-0 col-sm-8 col-sm-offset-1 col-md-8 col-md-offset-1 col-lg-8 col-lg-offset-1">
+    <p ng-hide="doneLoading">Loading...</p>
+    <p class="error">{{error}}</p>
+    <div ng-show="doneLoading" class="listcontainer">
+        <table class="list">
+            <thead>
+            <td>
+                <p class="positiontext" ng-hide="userPosition">{{city}} {{county}}</p>
+            </td>
+            <td>
+                <button class="updatepositionbutton" type="button" ng-click="upDatePosition()">
+                    <span class="refresh glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                </button>
+            </td>
+            </thead>
+            <tbody>
+            <div>
+                <tr ng-repeat="job in jobs" ng-bind-html-unsafe="job">
+                    <td>
+                        <div>
+                            <p class="jobheadline">{{job.annonsrubrik}}</p>
+                            <button class="updatepositionbutton" type="button" ng-click="getjobDetails(job.annonsid)">
+                                <span class="jobinfobutton glyphicon glyphicon-collapse-up" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <p class="subtext">{{job.arbetsplatsnamn}}, {{job.kommunnamn}}</p>
+                    </td>
+                </tr>
+            </div>
+            </tbody>
+        </table>
+    </div>
+</main>

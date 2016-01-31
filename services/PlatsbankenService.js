@@ -12,14 +12,12 @@ app.service('PlatsbankenService', function($http, $q, $filter, SessionStorageSer
             }else{
                 deferred.reject("Vi kan för närvarande inte hämta information från platsbanken.");
             }
-
-        return deferred.promise;
+     return deferred.promise;
     } 
     
     this.upDateJobs = function(countyId){ 
         var deferred = $q.defer();
         $http.get('backend/GetAvailableJobs.php?county='+countyId).then(function(response){
-            console.log(response);
             var date = new Date();
             sessionStorage.setItem(latestUpdate, date);
             sessionStorage.setItem(jobList, JSON.stringify(response));

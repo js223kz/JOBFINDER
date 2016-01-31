@@ -3,7 +3,7 @@ error_reporting(~0); ini_set('display_errors', 1);
 include('PlatsbankenApiRequest.php');
 
     try{
-        if (isset($_GET['jobid']])) {
+        if (isset($_GET['jobid'])) {
             if(is_numeric($_GET['jobid'])){
                 $jobId = $_GET['jobid'];
                 $jobDetails = getResponse("platsannonser/$jobId");

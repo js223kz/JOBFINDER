@@ -26,10 +26,10 @@ app.controller('JobDetailsController', function($scope, JobIdService, JobDetails
     };
     
     $scope.goBack = function(){
-        $state.go('start');
+        $state.go('platsbanken');
     }
     
-    if(JobDetailsService.getCachedJobDetails() == null){
+    if(JobDetailsService.getCachedJobDetails() === null){
         JobDetailsService.getJobDetails(JobIdService.getId()).then(function(){
             $scope.setJobtextInfo();
             

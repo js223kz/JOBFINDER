@@ -7,11 +7,17 @@ app.config(function($stateProvider){
         controller: 'StartController',
         templateUrl: 'partials/StartView.html'
     })
+    .state('platsbanken', {
+        url:'/platsbanken',
+        controller: 'PlatsbankenController',
+        templateUrl: 'partials/PlatsbankenView.html'
+    })
     .state('jobdetails', {
         url:'/jobbdetaljer',
         controller: 'JobDetailsController',
         templateUrl: 'partials/DetailsView.html'
     })
 });
+
 
     

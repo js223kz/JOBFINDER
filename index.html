@@ -15,7 +15,10 @@
         <div class="logocontainer col-xs-1 col-sm-1 col-md-1 col-lg-1 ">
             <h1 class="logo">Jobfinder</h1>
         </div>
-    
+        <div ng-controller="OnlineStatusController">
+            <p>Application is {{online_status_string}}</p>
+        </div>
+
       <div ui-view></div>
              
         
@@ -31,12 +34,15 @@
         <script src="libs/jquery/dist/jquery.min.js"></script>
         
         <script src="app.js"></script>
+        <script src="services/OnlineStatusService.js"></script>
         <script src="services/SessionStorageService.js"></script>
         <script src="services/CountyDataSevice.js"></script>
         <script src="services/PlatsbankenService.js"></script>
         <script src="services/JobIdService.js"></script>
-        <script src="services/JobDetailsService.js"></script>        
+        <script src="services/JobDetailsService.js"></script>
+        <script src="controllers/OnlineStatusController.js"></script>
         <script src="controllers/StartController.js"></script>
+        <script src="controllers/PlatsbankenController.js"></script>
         <script src="controllers/JobDetailsController.js"></script>
     </body>
 </html>

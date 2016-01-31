@@ -8,15 +8,10 @@ app.service('CountyDataService', function($http, $geolocation, $window, $q, Sess
     }
     //returns chached position data
     this.getCachedPosition = function(){
-
-        try{
-            var position = JSON.parse(sessionStorage.getItem(userPos));
-            if(position != undefined){
-                return position;
-            }else{
-                return null;
-            }
-        }catch(error){
+        var position = JSON.parse(sessionStorage.getItem(userPos));
+        if(position != undefined){
+            return position;
+        }else{
             return null;
         }
     }    

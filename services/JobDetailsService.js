@@ -17,7 +17,7 @@ app.service('JobDetailsService', function($http, $q, SessionStorageService){
             sessionStorage.setItem(details, JSON.stringify(response.data));
             deferred.resolve();                   
         }, function(error){
-            deferred.reject("Vi kan för närvarande inte hämta information från platsbanken. Försök igen om en stund.");
+            deferred.reject("Vi kan för närvarande inte hämta information från platsbanken.");
         });
        return deferred.promise;
     }  
