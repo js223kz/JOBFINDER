@@ -57,6 +57,9 @@ hr{
     font-size: 1em;
     float: left;
 }
+#af_logo{
+    max-width: 100%;
+}
 
 #meetup.buttonsquare{
     background-color: brown;
