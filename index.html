@@ -5,36 +5,29 @@
 		<meta charset="utf-8">
 		<title>Jobfinder</title>
 		<meta name="generator" content="Bootply" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
-              integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="/css/styles.css">
 	</head>
-	<body col-sm-12 col-md-12 col-lg-12>
-        <div class="logocontainer col-xs-1 col-sm-1 col-md-1 col-lg-1 ">
-            <h1 class="logo">Jobfinder</h1>
-        </div>
-        <div ng-controller="OnlineStatusController">
-            <p>Application is {{online_status_string}}</p>
+	<body>
+        <div ng-hide="online" ng-controller="OnlineStatusController">
+            <p>Applikationen är offline</p>
         </div>
 
-      <div ui-view></div>
+      <div ui-view class="viewcontainer"></div>
              
         
         <script src="libs/angular/angular.js"></script>
         <script src="libs/angular-ui-router/release/angular-ui-router.js"></script>
         <script src="libs/angular-route/angular-route.js"></script>
-        <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
         <script src="libs/ngGeolocation/ngGeolocation.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
-                integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-        <script src="libs/jquery/dist/jquery.min.js"></script>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
         
         <script src="app.js"></script>
-        <script src="services/OnlineStatusService.js"></script>
         <script src="services/SessionStorageService.js"></script>
         <script src="services/CountyDataSevice.js"></script>
         <script src="services/PlatsbankenService.js"></script>

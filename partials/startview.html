@@ -1,5 +1,33 @@
-<main class="col-xs-10 col-xs-offset-0 col-sm-8 col-sm-offset-1 col-md-8 col-md-offset-1 col-lg-8 col-lg-offset-1">
-    <p ng-show="doneLoading">Loading...</p>
-    <button ng-click="goToPlatsbanken()">Platsbanken</button>
+<main class="startcontainer col-sm-offset-3 col-md-offset-4 col-lg-offset-4">
+    <div ng-show="loading" id="fountainTextG">
+        <div id="fountainTextG_1" class="fountainTextG">L</div>
+        <div id="fountainTextG_2" class="fountainTextG">a</div>
+        <div id="fountainTextG_3" class="fountainTextG">d</div>
+        <div id="fountainTextG_4" class="fountainTextG">d</div>
+        <div id="fountainTextG_5" class="fountainTextG">a</div>
+        <div id="fountainTextG_6" class="fountainTextG">r</div>
+    </div>
+    <menu ng-hide="showInfo">
+    <button id="jobfinderbtn" class="buttonsquare col-xs-12 col-sm-4 col-md-3 col-lg-3" 
+            ng-click="showJobfinderInfo()"><img src="css/images/Jobfinder@2x.png" alt="logo"/></button>
 
+    <button class="buttonsquare col-xs-12 col-sm-4 col-md-3 col-lg-3" id="platsbanken" ng-click="goToPlatsbanken()">Platsbanken</button>
+
+        <div class="buttonsquare col-xs-12 col-sm-4 col-md-3 col-lg-3" id="meetup">Något annat</div>
+        <div class="buttonsquare col-xs-12 col-sm-4 col-md-3 col-lg-3" id="blocket">Något annat</div>
+    </menu>
+
+    <section ng-show="showInfo" class="col-xs-12 col-sm-8 col-md-6 col-lg-6" ng-show="showInfo" id="jobfinderinfo">
+        
+        <button class="closebtn" class="btn btn-default" ng-click="close()">
+          <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+        </button>
+        <img id="jobfinderlogo" src="css/images/Jobfinder@2x.png" alt="logo"/> 
+        <hr>
+        <p>Sidan för dig som söker nya utmaningar inom Data- och ITbranschen. 
+            Utifrån din position hämtar vi allt intressant som är på gång i just
+            din region. Just nu har vi bara lagt in jobb från platsbanken, men
+            mycket mer är på gång.<br>Lycka till!</p>
+    </section>
 </main>
+

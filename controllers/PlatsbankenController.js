@@ -3,11 +3,11 @@ app.controller('PlatsbankenController', function($scope, $state, $filter, County
     $scope.city = "";
     $scope.county = "";
     $scope.jobs = "";
-    $scope.doneLoading = false;
+    $scope.loading = true;
     $scope.isDataInCache = false;
 
     $scope.getjobDetails = function(id){
-        $scope.doneLoading = false;
+        $scope.loading = false;
         JobIdService.sendId(id);
         $state.go('jobdetails');
     };
@@ -40,7 +40,7 @@ app.controller('PlatsbankenController', function($scope, $state, $filter, County
         }
 
 
-        $scope.doneLoading = true;
+        $scope.loading = false;
     };
 
     $scope.upDatePosition = function(){
@@ -49,7 +49,7 @@ app.controller('PlatsbankenController', function($scope, $state, $filter, County
             PlatsbankenService.upDateJobs(position.id).then(function(){
                 PlatsbankenService.getCachedJobs().then(function(jobs){
                     $scope.jobs = jobs;
-                    $scope.doneLoading = true;
+                    $scope.loading = false;
 
                 }, function(error){
                     $scope.error = error;
@@ -84,14 +84,11 @@ app.controller('PlatsbankenController', function($scope, $state, $filter, County
     //if cached jobs are older than three hours update jobs
     if(CountyDataService.getCachedPosition() === null){
         $scope.upDatePosition();
-        console.log("uppdaterar allt");
     }else{
         var position = CountyDataService.getCachedPosition();
         if(position == null){
             $scope.upDatePosition();
-            console.log("uppdaterar allt");
         }else{
-            console.log("Hämtar cachat");
             $scope.updatePositionText(position);
             $scope.isDataInCache = true;
             $scope.upDateJobs();

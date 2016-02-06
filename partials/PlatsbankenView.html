@@ -1,7 +1,14 @@
 <main class="col-xs-10 col-xs-offset-0 col-sm-8 col-sm-offset-1 col-md-8 col-md-offset-1 col-lg-8 col-lg-offset-1">
-    <p ng-hide="doneLoading">Loading...</p>
+    <div ng-show="loading" id="fountainTextG">
+        <div id="fountainTextG_1" class="fountainTextG">L</div>
+        <div id="fountainTextG_2" class="fountainTextG">a</div>
+        <div id="fountainTextG_3" class="fountainTextG">d</div>
+        <div id="fountainTextG_4" class="fountainTextG">d</div>
+        <div id="fountainTextG_5" class="fountainTextG">a</div>
+        <div id="fountainTextG_6" class="fountainTextG">r</div>
+    </div>
     <p class="error">{{error}}</p>
-    <div ng-show="doneLoading" class="listcontainer">
+    <div ng-hide="loading" class="listcontainer">
         <table class="list">
             <thead>
             <td>

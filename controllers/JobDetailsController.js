@@ -1,9 +1,8 @@
 app.controller('JobDetailsController', function($scope, JobIdService, JobDetailsService, $state){
-    $scope.doneLoading = false;
+    $scope.loading = true;
     $scope.setJobtextInfo = function(){
         var data = JobDetailsService.getCachedJobDetails();
         var base = data.platsannons;
-        console.log(data);
         $scope.headLine = base.annons.annonsrubrik;
         $scope.text = base.annons.annonstext;
         $scope.numberOfPositions = base.annons.antal_platser;
@@ -22,7 +21,7 @@ app.controller('JobDetailsController', function($scope, JobIdService, JobDetails
         $scope.lastDay = base.ansokan.sista_ansokningsdag;
         $scope.otherInfo = base.ansokan.ovrigt_om_ansokan;
         
-        $scope.doneLoading = true;
+        $scope.loading = false;
     };
     
     $scope.goBack = function(){
