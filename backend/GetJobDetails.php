@@ -1,5 +1,4 @@
 <?php 
-include('ini.php');
 include('PlatsbankenApiRequest.php');
 
     try{
