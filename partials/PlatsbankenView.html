@@ -1,40 +1,34 @@
-<main class="col-xs-10 col-xs-offset-0 col-sm-8 col-sm-offset-1 col-md-8 col-md-offset-1 col-lg-8 col-lg-offset-1">
-    <div ng-show="loading" id="fountainTextG">
-        <div id="fountainTextG_1" class="fountainTextG">L</div>
-        <div id="fountainTextG_2" class="fountainTextG">a</div>
-        <div id="fountainTextG_3" class="fountainTextG">d</div>
-        <div id="fountainTextG_4" class="fountainTextG">d</div>
-        <div id="fountainTextG_5" class="fountainTextG">a</div>
-        <div id="fountainTextG_6" class="fountainTextG">r</div>
+<main class="col-md-offset-3 col-lg-offset-3">
+    <div ng-show="loading" class="col-xs-12 col-sm-4 col-md-3 col-lg-3" >        
+        <div class="loader">Laddar...</div>
     </div>
-    <p class="error">{{error}}</p>
-    <div ng-hide="loading" class="listcontainer">
+    <div>
+        <p class="error">{{error}}</p>
+    </div>
+    
+    <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+        <button ng-click="goBack()">Tillbaka</button>
+    </div>
+    
+    <div ng-hide="loading" class="listcontainer col-xs-12 col-sm-12 col-md-8 col-lg-8">
         <table class="list">
-            <thead>
-            <td>
-                <p class="positiontext" ng-hide="userPosition">{{city}} {{county}}</p>
-            </td>
-            <td>
-                <button class="updatepositionbutton" type="button" ng-click="upDatePosition()">
-                    <span class="refresh glyphicon glyphicon-refresh" aria-hidden="true"></span>
-                </button>
-            </td>
-            </thead>
-            <tbody>
-            <div>
+            <tr>
+                <td>
+                    <p id="positiontext" class="headline" ng-hide="userPosition">{{city}} {{county}}</p>
+                    <button class="spanbtn" type="button" ng-click="getjobDetails(job.annonsid)">
+                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                    </button>
+                </td>
+            </tr>
                 <tr ng-repeat="job in jobs" ng-bind-html-unsafe="job">
-                    <td>
-                        <div>
-                            <p class="jobheadline">{{job.annonsrubrik}}</p>
-                            <button class="updatepositionbutton" type="button" ng-click="getjobDetails(job.annonsid)">
-                                <span class="jobinfobutton glyphicon glyphicon-collapse-up" aria-hidden="true"></span>
-                            </button>
-                        </div>
+                    <td colspan="2">
+                        <p class="headline">{{job.annonsrubrik}}</p>                      
+                        <button class="spanbtn" type="button" ng-click="getjobDetails(job.annonsid)">
+                            <span class="glyphicon glyphicon-collapse-up" aria-hidden="true"></span>
+                        </button>
                         <p class="subtext">{{job.arbetsplatsnamn}}, {{job.kommunnamn}}</p>
                     </td>
-                </tr>
-            </div>
-            </tbody>
+                </tr>               
         </table>
     </div>
 </main>

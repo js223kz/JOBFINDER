@@ -5,6 +5,10 @@ app.controller('PlatsbankenController', function($scope, $state, $filter, County
     $scope.jobs = "";
     $scope.loading = true;
     $scope.isDataInCache = false;
+    
+    $scope.goBack = function(){
+        $state.go('start');
+    }
 
     $scope.getjobDetails = function(id){
         $scope.loading = false;
