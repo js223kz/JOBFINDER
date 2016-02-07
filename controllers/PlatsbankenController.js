@@ -2,10 +2,11 @@ app.controller('PlatsbankenController', function($scope, $state, $filter, County
     $scope.error = "";
     $scope.city = "";
     $scope.county = "";
-    $scope.jobs = "";
     $scope.loading = true;
-    $scope.isDataInCache = false;
+    $scope.jobs = "";
     
+    $scope.isDataInCache = false;
+  
     $scope.goBack = function(){
         $state.go('start');
     }

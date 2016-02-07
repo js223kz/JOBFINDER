@@ -1,4 +1,4 @@
-app.controller('StartController', function($scope, $state){
+app.controller('StartController', function($scope, $state, $timeout){
 
     $scope.loading = false;
     $scope.showInfo = false;
