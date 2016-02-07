@@ -1,17 +1,21 @@
-<main class="jobdetailsContainer col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-    <div ng-show="loading" class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+<main class="col-md-offset-3 col-lg-offset-3">
+    <div ng-show="loading" class="loadercontainer col-xs-12 col-sm-4 col-md-3 col-lg-3" >        
         <div class="loader">Laddar...</div>
     </div>
-    <p class="error">{{error}}</p>
-    <div ng-hide="loading">
-        <button ng-click="goBack()">Tillbaka</button>
+    <div ng-show="{{error}}" class="errorcontainer col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        <p class="error alert alert-danger">{{error}}</p>
+    </div>
+    <div ng-hide="loading" class="backbutton col-xs-12 col-sm-4 col-md-3 col-lg-3">
+            <button ng-click="goBack()">Tillbaka</button>
+    </div>
+    <section class="jobdetailscontainer col-xs-12 col-sm-12 col-md-8 col-lg-8" ng-hide="loading">
         <h1>{{headLine}}</h1>    
         <pre>
         <p>
         Antal platser: {{numberOfPositions}}
         Arbetsplats: {{workPlace}}
         Adress: {{address}}, {{city}}
-        Hemsida: {{webPage}}
+        Hemsida: <a href="{{webPage}}" target="_blank">{{webPage}}</a>
         Telefon: {{phone}}
         </p>
         </pre>
@@ -32,11 +36,11 @@
         </pre>
         <pre>
         <p>
-        Skicka ansökan via webbplats: {{applicationWeb}}
+        Skicka ansökan via webbplats: <a href="{{applicationWeb}}" target="_blank">{{applicationWeb}}</a>
         Skicka ansökan via e-post: {{applicationEmail}}
-        Sista ansökningsdagen: {{lastDay}}
+        Sista ansökningsdag: {{lastDay | date:'yyyy-MM-dd'}}
         Övrig information om ansökan: {{otherInfo}}
         </p>
         </pre>
-    </div>
+    </section>
 </main>

@@ -1,3 +1,5 @@
+
+/*universal*/
 html { 
     background-image: url(images/cotton-fabric-rough.jpg);
 }
@@ -9,14 +11,41 @@ body{
 button{
      border: none;
 }
-main{
-    margin-right: 40px;
-    margin-top: 80px;
-}
+
 hr{
-    border-color: beige;
-    
+    border-color: beige;   
 }
+
+menu{
+    clear: both;
+    margin-top: 30px;
+}
+
+pre {
+    white-space: pre-wrap;       /* CSS 3 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    word-break: keep-all;
+    padding: 0;
+    font-family: "Verdana";
+}
+
+tr{
+   border-bottom: 1px solid beige; 
+}
+
+td{
+    font-family: Verdana;
+}
+
+span{
+    font-size: 3vw;
+    color: grey;
+}
+
+/*used in multiple views*/
 .closebtn{
     font-size: 1.5em;
     position: absolute;
@@ -24,6 +53,26 @@ hr{
     top: 5px;
     background-color: transparent;
 }
+.backbutton{
+    float: left;
+    clear: both;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.errorcontainer{
+    margin-top: 20px;
+    float: left;
+    padding: 0;
+}
+
+.loadercontainer{
+    float: left;
+    clear: both;    
+    background-color: transparent;
+}
+
+/*startview*/
 .buttonsquare{
     height: 150px;
     line-height: 150px;
@@ -80,15 +129,8 @@ hr{
     border-bottom-right-radius: 5px;
 }
 
-td{
-    font-family: Verdana;
-}
 
-span{
-    font-size: 3vw;
-    color: grey;
-}
-
+/*Platsbankenview*/
 .spanbtn{
     max-width: 10%;
     min-width: 10%;
@@ -98,17 +140,14 @@ span{
 }
 
 .listcontainer{
+    clear: both;
     background-color: white;
     border-radius: 5px;
-    margin-left: 20px;
+    margin-top: 15px;
     min-height: 500px;
     max-height: 800px;
     padding: 10px;
     overflow-y: auto;
-}
-
-tr{
-   border-bottom: 1px solid beige; 
 }
 
 .headline{
@@ -120,30 +159,30 @@ tr{
     height: auto;
     float: left;
 }
+
 #positiontext.headline{
     color: grey;
 }
+
 .subtext{
     clear: both;
     font-family: "Verdana";
     color: #000;
     font-size: 2vW;
 }
-pre {
-    white-space: pre-wrap;       /* CSS 3 */
-    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-    white-space: -pre-wrap;      /* Opera 4-6 */
-    white-space: -o-pre-wrap;    /* Opera 7 */
-    word-wrap: break-word;       /* Internet Explorer 5.5+ */
-    word-break: keep-all;
-    padding: 0;
-}
+
 .jobtext{
     margin-left: 30px;
 }
 
-/*loader*/
+/*jobdetailsview*/
+.jobdetailscontainer{
+    margin-top: 15px;
+    clear: both;
+    padding: 0;
+}
 
+/*loader*/
 .loader,
 .loader:before,
 .loader:after {
