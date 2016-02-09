@@ -1,11 +1,16 @@
 "use strict";
+/*Gets user current position and
+call Google Api to fetch current position
+county*/
 app.service('CountyDataService', function($http, $geolocation, $window, $q, SessionStorageService){
 
     var userPos = SessionStorageService.positionSession();
-
+    
+    //Is geolocation supported in users browser
     function supported() {
         return 'geolocation' in $window.navigator;
     }
+    
     //returns chached position data
     this.getCachedPosition = function(){
         var position = JSON.parse(sessionStorage.getItem(userPos));
@@ -40,11 +45,14 @@ app.service('CountyDataService', function($http, $geolocation, $window, $q, Sess
             
     //get position information from google maps
     function getCountyName(position){
-        var baseUrl = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=';
         var deferred = $q.defer();
+        var baseurl = "http://maps.googleapis.com/maps/api/geocode/json?latlng=";
+        var userposition = {
+            lat: position.lat,
+            lng: position.lng
+        }
 
-        $http.get(baseUrl + position.lat + ',' + position.lng).then(function(response){
-            console.log(response);
+        $http.post("backend/GetPositionDetails.php", userposition).then(function(response){
             deferred.resolve(response);
         }, function(error){
             deferred.reject("Vi kan för tillfället inte hämta information om din position från Google Maps.");
@@ -62,7 +70,9 @@ app.service('CountyDataService', function($http, $geolocation, $window, $q, Sess
         //getting name of county (always on the same position in json response)
         var countyPosition = json.data["results"].length -2;
         var county = json.data["results"][countyPosition].formatted_address;
-        position.county = county.split(',')[0];
+        var modifiedCounty = county.split(',')[0];
+        modifiedCounty = modifiedCounty.replace("County", "län");
+        position.county = modifiedCounty;
 
         //getting name of city (always on the same position in json response)
         var cityPosition = json.data["results"].length -4;
@@ -98,7 +108,8 @@ app.service('CountyDataService', function($http, $geolocation, $window, $q, Sess
         return deferred.promise;
     }   
     
-    
+    /*Updates position when user requests
+    application or presses update button*/
     this.updateUserPosition = function(){
         var deferred = $q.defer();
         var userPosition = {

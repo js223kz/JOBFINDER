@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html ng-app="JobFinderApp" lang="se">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<title>Jobfinder</title>
-		<meta name="generator" content="Bootply" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Jobfinder</title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="/css/styles.css">
-	</head>
-	<body>
-        <div class="alert alert-danger" ng-hide="online" ng-controller="OnlineStatusController">
-            <p>Applikationen är offline</p>
-        </div>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Application offline --> 
+    <div class="alert alert-danger" ng-hide="online" ng-controller="OnlineStatusController">
+        <p>Applikationen är offline</p>
+    </div>
 
-      <div ui-view class="viewcontainer"></div>
-             
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-        <script src="libs/angular-ui-router/release/angular-ui-router.js"></script>
-        <script src="libs/ngGeolocation/ngGeolocation.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- Partials --> 
+    <div ui-view class="viewcontainer"></div>
 
-        
-        <script src="app.js"></script>
-        <script src="services/SessionStorageService.js"></script>
-        <script src="services/CountyDataSevice.js"></script>
-        <script src="services/PlatsbankenService.js"></script>
-        <script src="services/JobIdService.js"></script>
-        <script src="services/JobDetailsService.js"></script>
-        <script src="controllers/OnlineStatusController.js"></script>
-        <script src="controllers/StartController.js"></script>
-        <script src="controllers/PlatsbankenController.js"></script>
-        <script src="controllers/JobDetailsController.js"></script>
-    </body>
+    <!-- CDN --> 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="libs/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="libs/ngGeolocation/ngGeolocation.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- Application resources --> 
+    <script src="app.js"></script>
+    <script src="services/SessionStorageService.js"></script>
+    <script src="services/CountyDataService.js"></script>
+    <script src="services/PlatsbankenService.js"></script>
+    <script src="services/JobIdService.js"></script>
+    <script src="services/JobDetailsService.js"></script>
+    <script src="controllers/OnlineStatusController.js"></script>
+    <script src="controllers/StartController.js"></script>
+    <script src="controllers/PlatsbankenController.js"></script>
+    <script src="controllers/JobDetailsController.js"></script>
+</body>
 </html>

@@ -1,5 +1,7 @@
 "use strict";
-
+/*Handles functionality on getting 
+list of jobs in users current position
+county*/
 app.service('PlatsbankenService', function($http, $q, $filter, SessionStorageService){
     var latestUpdate = SessionStorageService.latestUpdateSession();
     var jobList = SessionStorageService.jobListSession();
@@ -8,7 +10,7 @@ app.service('PlatsbankenService', function($http, $q, $filter, SessionStorageSer
         var deferred = $q.defer();
         var cachedJobs = JSON.parse(sessionStorage.getItem(jobList));
             if(cachedJobs !== undefined){
-                deferred.resolve(cachedJobs.data.matchningslista.matchningdata);
+                deferred.resolve(cachedJobs.matchningslista.matchningdata);
             }else{
                 deferred.reject("Vi kan för närvarande inte hämta information från platsbanken.");
             }
@@ -20,7 +22,7 @@ app.service('PlatsbankenService', function($http, $q, $filter, SessionStorageSer
         $http.get('backend/GetAvailableJobs.php?county='+countyId).then(function(response){
             var date = new Date();
             sessionStorage.setItem(latestUpdate, date);
-            sessionStorage.setItem(jobList, JSON.stringify(response));
+            sessionStorage.setItem(jobList, JSON.stringify(response.data));
             deferred.resolve();                   
         }, function(error){
             deferred.reject("Vi kan för närvarande inte hämta information från platsbanken.");

@@ -1,4 +1,5 @@
 <?php
+/*Handles all communication with Platsbanken API*/
 include('Settings.php');
 
     function getResponse($urlExtension){
@@ -9,6 +10,7 @@ include('Settings.php');
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
        
+        //get headers from Settings.php
         $headers = getHeaders();
         
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);

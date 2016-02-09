@@ -24,12 +24,13 @@ menu{
 pre {
     white-space: pre-wrap;       /* CSS 3 */
     white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;      /* Opera 4-6 */
     white-space: -o-pre-wrap;    /* Opera 7 */
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
     word-break: keep-all;
     padding: 0;
     font-family: "Verdana";
+    font-size: 1.5vW;
 }
 
 tr{
@@ -76,6 +77,10 @@ span{
 }
 
 /*startview*/
+#startmenu{
+    margin-top: 15px;
+}
+
 .buttonsquare{
     height: 150px;
     line-height: 150px;
@@ -171,7 +176,7 @@ span{
     clear: both;
     font-family: "Verdana";
     color: #000;
-    font-size: 2vW;
+    font-size: 1.5vW;
 }
 
 .jobtext{
@@ -180,7 +185,7 @@ span{
 
 /*jobdetailsview*/
 .jobdetailscontainer{
-    margin-top: 15px;
+    margin-top: 30px;
     clear: both;
     padding: 0;
 }

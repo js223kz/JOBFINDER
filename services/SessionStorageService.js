@@ -1,3 +1,4 @@
+"use strict";
 /**
  * a service that returns strings of session names
  * to avoid string dependencies in controllers and

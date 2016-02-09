@@ -1,17 +1,20 @@
 <?php 
+/*gets details on a specific job*/
 include('PlatsbankenApiRequest.php');
 
     try{
+        //jobid from frontend
         if (isset($_GET['jobid'])) {
-            if(is_numeric($_GET['jobid'])){
-                $jobId = $_GET['jobid'];
-                $jobDetails = getResponse("platsannonser/$jobId");
 
-                header('Content-Type: application/json');
-                echo $jobDetails;
-            }else{
-               echo http_response_code(400);
-            }
+            $jobId = $_GET['jobid'];
+
+            //sends urlextension to PlatsbankenApiRequsest.php
+            $jobDetails = getResponse("platsannonser/$jobId");
+
+            //send response to frontend
+            header('Content-Type: application/json');
+            echo $jobDetails;
+
         }
     }catch(Exception $e){
         echo http_response_code(500);

@@ -1,3 +1,7 @@
+"use strict";
+
+//sends specific jobid from PlatsbankenController
+//to JobdDetailsController
 app.factory('JobIdService',function($rootScope, $timeout){
 var service = {};
   service.id = false;
@@ -10,7 +14,3 @@ var service = {};
   };
   return service;
 });
-
-/*$timeout(function(){
-         $rootScope.$broadcast('id_shared');
-      },100);*/

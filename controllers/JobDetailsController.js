@@ -1,4 +1,7 @@
-app.controller('JobDetailsController', function($scope, JobIdService, JobDetailsService, $state){
+"use strict";
+//Show details on specific job
+app.controller('JobDetailsController', function($scope, JobIdService, JobDetailsService, SessionStorageService, $state){
+
     $scope.loading = true;
     $scope.setJobtextInfo = function(){
         var data = JobDetailsService.getCachedJobDetails();
@@ -16,18 +19,20 @@ app.controller('JobDetailsController', function($scope, JobIdService, JobDetails
         $scope.salary = base.villkor.lonetyp;
         $scope.car = base.krav.egenbil;
         $scope.reference = base.ansokan.referens;
-        $scope.applicationWeb = base.ansokan.webadress;
+        $scope.applicationWeb = base.ansokan.webbplats;
         $scope.applicationEmail = base.ansokan.epostadress;
         $scope.lastDay = base.ansokan.sista_ansokningsdag;
         $scope.otherInfo = base.ansokan.ovrigt_om_ansokan;
-        
         $scope.loading = false;
     };
     
     $scope.goBack = function(){
         $state.go('platsbanken');
-    }
+        JobDetailsService.emptyJobDetailCache();
+
+    };
     
+    //If session storage is empty then reload jobdetails
     if(JobDetailsService.getCachedJobDetails() === null){
         JobDetailsService.getJobDetails(JobIdService.getId()).then(function(){
             $scope.setJobtextInfo();

@@ -10,16 +10,12 @@
   "moduleType": [],
   "ignore": [
     "**/.*",
-    "node_modules",
-    "bower_components",
-    "public/lib",
-    "test",
-    "tests"
+    "public/libs",
+    "backend/Settings.php"
   ],
   "dependencies": {
-    "angular": "~1.4.8",
-    "angular-route": "~1.4.8",
     "angular-ui-router": "~0.2.15",
-    "ngGeolocation": "~0.0.8"
+    "ngGeolocation": "~0.0.8",
+    "sw-toolbox": "~3.1.1"
   }
 }
