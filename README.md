@@ -26,13 +26,13 @@ Användaren ska bli medveten om applikationen går offline
 #### Sekundära krav
 Användaren ska kunna söka information från orter andra än enhetens nuvarande position.
 
-#### Api:er
+### Api:er
 Arbetsförmedlingens API, Google Maps API
 
-#### Applikationens flöde
+### Applikationens flöde
 [Flödesschema](https://drive.google.com/file/d/0Bwo7ZJERQOUMQzJsSi1fRjB1cDA/view?usp=sharing)
 
-####Prestanda
+### Prestanda
 Mina teorier baseras på Steve Souders, High Performance Web Sites: Essential Knowledge for Frontend Engineers
 
 Minskat antalet Http-anrop:
@@ -68,19 +68,19 @@ Content Delivery Network är gjort för att ladda externa komponenter snabbt och
 automatiskt.
 
 
-###Säkerhet
+### Säkerhet
 Kanske inte världens mest hemliga information, men min epostadress som krävs vid användande av Platsbankens API hanteras
 på servern och ligger i en Settingsfil som inte laddas upp på Github.
 Data valideras före den skickas vidare till server eller andra API:er för att undvika XSS-attacker.
 
 Applikationen hanterar inte inloggningen eller känslig data, säkerhet har därför inte legat i fokus.
 
-####Offline first
+### Offline first
 Användaren informeras om nätet går ner. Dock upplever jag att den informationen visas alltför ofta när sidan initialt
 laddas. Jag behöver troligtvis sätta en timeout på meddelandet alternativt titta på andra lösningar än navigator.online.
 Har användaren besökt sidan förr är förstasidan chachad och visas således nät eller inte.
 
-####Risker med applikationen:
+### Risker med applikationen:
 Först och främst är den helt beroende av att andra API:er fungerar för att vara meningsfull för användaren.
 Den är också individuell för användaren då dennes egen position används för att filtrera data. Det är därför inte
 meningsfullt att visa någon slags "defaultdata". Jag tänker att det är viktigt att jag får in mer data
@@ -90,7 +90,7 @@ Jag har säkerställt att de API:er jag använder inte belastas för ofta genom 
 och per session. Positionsdata hämtas initialt sedan får användaren själv initiera en uppdatering.
 
 
-####Egen reflektion kring projektet:
+### Egen reflektion kring projektet:
 Det är fantastiskt att det finns öppna API:er att använda, men hur min hjärna löser saker är inte alltid på
 samma sätt som API:et är uppbyggt. Jag stötte på patrull när jag behövde koppla en användares position till ett länid,
 men det löste sig och i framtiden får jag lägga mer tid på research innan jag kodar. Det kliar i fingrarna att börja
