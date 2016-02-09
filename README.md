@@ -9,7 +9,7 @@ Det finns en hel del sidor som riktar in sig på data/it-branschen, Dfind IT är
 som är i slutet av min utbildning och i början av en karriär. Dessutom är jag i de allra flesta fall bara intresserad av
 det som sker i den region jag bor och skulle uppskatta en sida som i första hand bara visar resultat från mitt närområde.
 
-
+[Länk till applikationen](http://46.101.166.136)
 
 ### Kravspecifikation
 Applikationen ska hämta användarens position
@@ -30,7 +30,7 @@ Användaren ska kunna söka information från orter andra än enhetens nuvarande
 Arbetsförmedlingens API, Google Maps API
 
 #### Applikationens flöde
-![alt tag](https://drive.google.com/file/d/0Bwo7ZJERQOUMQzJsSi1fRjB1cDA/view?usp=sharing)
+[Flödesschema](https://drive.google.com/file/d/0Bwo7ZJERQOUMQzJsSi1fRjB1cDA/view?usp=sharing)
 
 ####Prestanda
 Mina teorier baseras på Steve Souders, High Performance Web Sites: Essential Knowledge for Frontend Engineers
