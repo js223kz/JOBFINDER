@@ -1,5 +1,5 @@
 # Projektbeskrivning
-Jag sak göra en applikation som samlar relevant information för den som söker jobb inom data/it.
+Jag vill göra en applikation som samlar relevant information för den som söker jobb inom data/it.
 Informationen ska filteras utifrån användarens nuvarande position. I ett första skede ska applikationen
 visa data/it jobb från Platsbanken, men tanken är att jag ska kunna bygga på den med intressanta meet-ups,
 exjobb, branschstatistik och jobb från andra källor än Platsbanken.
