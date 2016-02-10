@@ -13,16 +13,16 @@ det som sker i den region jag bor och skulle uppskatta en sida som i första han
 [Länk till filmen](https://youtu.be/217eNhx6th4)
 
 ### Kravspecifikation
-Applikationen ska hämta användarens position
-Utifrån användarens position hämta län
-Koppla länet till ett id
-Baserat på länets id hämta lediga jobb inom data/it
-Rendera ut en lista över lediga jobb
-Hämta detaljer om ett specifikt jobb utifrån ett jobb-id
-Rendera ut information om ett specifikt jobb
-Användaren ska kunna uppdatera sin position
-Statiska filers ska cachas
-Användaren ska bli medveten om applikationen går offline
+Applikationen ska hämta användarens position<br>
+Utifrån användarens position hämta län<br>
+Koppla länet till ett id<br>
+Baserat på länets id hämta lediga jobb inom data/it<br>
+Rendera ut en lista över lediga jobb<br>
+Hämta detaljer om ett specifikt jobb utifrån ett jobb-id<br>
+Rendera ut information om ett specifikt jobb<br>
+Användaren ska kunna uppdatera sin position<br>
+Statiska filers ska cachas<br>
+Användaren ska bli medveten om applikationen går offline<br>
 
 #### Sekundära krav
 Användaren ska kunna söka information från orter andra än enhetens nuvarande position.
