@@ -9,7 +9,7 @@ Det finns en hel del sidor som riktar in sig på data/it-branschen, Dfind IT är
 som är i slutet av min utbildning och i början av en karriär. Dessutom är jag i de allra flesta fall bara intresserad av
 det som sker i den region jag bor och skulle uppskatta en sida som i första hand bara visar resultat från mitt närområde.
 
-[Länk till applikationen](http://46.101.166.136)
+[Länk till applikationen](http://46.101.166.136)<br>
 [Länk till filmen](https://youtu.be/217eNhx6th4)
 
 ### Kravspecifikation
@@ -36,14 +36,14 @@ Arbetsförmedlingens API, Google Maps API
 ### Prestanda
 Mina teorier baseras på Steve Souders, High Performance Web Sites: Essential Knowledge for Frontend Engineers
 
-Minskat antalet Http-anrop:
+Minskat antalet Http-anrop:<br>
 Applikationen innehåller inga onödiga filer som inte används.
 Alla js- css- json- och bild-filer chachas som default i en månad.
 
 Enligt undersökningar står HTML-dokumentet endast av 10-20% av laddningstiden för slutanvändaren. Alla andra
 komponenter som t ex bilder, css- och skriptfiler, som det refereras till i HTML-dokumentet står för resterande 80-90%.
 
-Minska laddningstider på Http-anrop:
+Minska laddningstider på Http-anrop:<br>
 Alla js- css- html- och php-filer komprimeras vid uppladdning.
 
 Svarstiden från servern är kortare ju mindre storleken är på svaret. Att komprimera HTTP-svaren är ett
@@ -59,7 +59,7 @@ Det är inte det att laddningstiden faktiskt är kortare om man placerar css-fil
 men eftersom inget renderar ut förrän css-filen har laddats upplevs laddningstiden som längre och ger en sämre
 användarupplevelse.
 
-Javascript- och CSS-filer är separerade från HTML-filerna.
+Javascript- och CSS-filer är separerade från HTML-filerna.<br>
 Ger initialt inte kortare laddningstid då det är fler filer som ska laddas upp. Det ger dock möjligheten att cacha
 CSS- och javascriptfiler.
 
